@@ -9,20 +9,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/students")
-@RequiredArgsConstructor
 public class StudentController {
 
-    private StudentService studentService;
+    @Autowired
+    private StudentService studentService; // Lombok's @RequiredArgsConstructor takes care of the injection
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody Student student) {
-         studentService.saveStudent(student);
+        studentService.saveStudent(student);
     }
 
     @GetMapping
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
-
 }
